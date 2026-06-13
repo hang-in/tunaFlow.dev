@@ -1,0 +1,18 @@
+{
+  "slug": "secall",
+  "name": "seCall",
+  "tagline": "Recall your second brain - conversations with AI agents, turned into a local wiki.",
+  "description": "Organise and search chats with AI agents as a personal knowledge base. Self-hosted, local-first, and built to surface the right context when you need it.",
+  "track": "ai-dev",
+  "status": "stable",
+  "language": "Rust",
+  "tags": ["ai", "wiki", "search", "local-first"],
+  "sources": {
+    "repo": "https://github.com/hang-in/seCall",
+    "host": "github",
+    "owner": "hang-in",
+    "name": "seCall"
+  },
+  "featured": [],
+  "order": 10
+}

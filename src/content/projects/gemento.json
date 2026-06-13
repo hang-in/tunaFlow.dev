@@ -1,0 +1,18 @@
+{
+  "slug": "gemento",
+  "name": "gemento",
+  "tagline": "gemma4 e4b + memento project - local memory experiments.",
+  "description": "A Python research project combining Gemma 4 E4B with a memento-style memory layer. Early, exploratory, and documented in a draft paper.",
+  "track": "ai-dev",
+  "status": "wip",
+  "language": "Python",
+  "tags": ["gemma", "local-llm", "research", "memory"],
+  "sources": {
+    "repo": "https://github.com/hang-in/gemento",
+    "host": "github",
+    "owner": "hang-in",
+    "name": "gemento"
+  },
+  "featured": [],
+  "order": 11
+}

@@ -1,0 +1,18 @@
+{
+  "slug": "sshc",
+  "name": "sshc",
+  "tagline": "Minimal Rust TUI for managing and connecting to SSH hosts.",
+  "description": "A fast terminal interface for hosts defined in ~/.ssh/config. Filter, jump, and connect without leaving the keyboard.",
+  "track": "ai-dev",
+  "status": "stable",
+  "language": "Rust",
+  "tags": ["tui", "ssh", "cli", "rust"],
+  "sources": {
+    "repo": "https://github.com/hang-in/sshc",
+    "host": "github",
+    "owner": "hang-in",
+    "name": "sshc"
+  },
+  "featured": [],
+  "order": 9
+}
