@@ -37,7 +37,7 @@ const osLabels: Record<string, string> = {
   data-track={project.track}
   style={`--card-accent: ${accent}`}
 >
-  <header>
+  <header class="card-header">
     <h3>
       {hasSite ? (
         <a href={project.sources.site} target="_blank" rel="noopener">{project.name}</a>
@@ -50,10 +50,15 @@ const osLabels: Record<string, string> = {
       {project.status}
     </span>
   </header>
-  <p class="tagline">{project.tagline}</p>
-  <p class="description">{project.description}</p>
-  <footer>
-    <span class="badges">
+
+  <div class="card-body">
+    <p class="tagline">{project.tagline}</p>
+    <p class="description">{project.description}</p>
+  </div>
+
+  <div class="card-section specs">
+    <span class="section-label">Specs</span>
+    <div class="badges">
       <span class="flat-badge" data-scheme="lang">
         <Icon name="code" size={12} />
         {project.language}
@@ -72,8 +77,12 @@ const osLabels: Record<string, string> = {
           ))}
         </span>
       )}
-    </span>
-    <span class="badges">
+    </div>
+  </div>
+
+  <div class="card-section activity">
+    <span class="section-label">Activity</span>
+    <div class="badges">
       {live.stars !== null && (
         <span class="flat-badge" data-scheme="stars" title="stars">
           <Icon name="star" size={12} />
@@ -86,20 +95,21 @@ const osLabels: Record<string, string> = {
           {new Date(live.pushedAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
         </span>
       )}
-    </span>
-  </footer>
-  <nav class="links">
+    </div>
+  </div>
+
+  <div class="card-actions">
     {hasSite && (
-      <a href={project.sources.site} target="_blank" rel="noopener">
-        <Icon name="external" size={12} />
+      <a class="btn primary" href={project.sources.site} target="_blank" rel="noopener">
+        <Icon name="external" size={14} />
         Live
       </a>
     )}
-    <a href={project.sources.repo} target="_blank" rel="noopener">
-      <Icon name={hostIcon} size={12} />
+    <a class="btn" href={project.sources.repo} target="_blank" rel="noopener">
+      <Icon name={hostIcon} size={14} />
       Repo
     </a>
-  </nav>
+  </div>
 </article>
 
 <style>
@@ -111,7 +121,7 @@ const osLabels: Record<string, string> = {
     background: var(--card-bg);
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0;
     transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
     backdrop-filter: blur(8px);
   }
@@ -125,11 +135,14 @@ const osLabels: Record<string, string> = {
     background:
       linear-gradient(180deg, var(--card-bg-2) 0%, var(--card-bg) 100%);
   }
-  header {
+
+  .card-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.5rem;
+    gap: 0.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
   }
   h3 {
     margin: 0;
@@ -143,6 +156,78 @@ const osLabels: Record<string, string> = {
   h3 a:hover {
     color: var(--card-accent);
     text-decoration: none;
+  }
+
+  .card-body {
+    padding: 1rem 0;
+  }
+  .tagline {
+    margin: 0 0 0.5rem;
+    font-weight: 500;
+    color: #e8e8e8;
+    font-size: 1.05rem;
+  }
+  .description {
+    margin: 0;
+    color: #999;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .card-section {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding: 0.85rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .section-label {
+    flex-shrink: 0;
+    width: 5.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .badges {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+  .card-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.55rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--fg);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .card-actions .btn:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.04);
+    text-decoration: none;
+  }
+  .card-actions .btn.primary {
+    background: var(--card-accent);
+    border-color: var(--card-accent);
+    color: #050508;
+  }
+  .card-actions .btn.primary:hover {
+    filter: brightness(1.15);
   }
 
   /* Flat badge system */
@@ -172,7 +257,7 @@ const osLabels: Record<string, string> = {
     flex-shrink: 0;
   }
 
-  /* Two-tone variant: left label, right value */
+  /* Two-tone variant */
   .flat-badge.flat-badge-two-tone {
     padding: 0;
     overflow: hidden;
@@ -200,7 +285,7 @@ const osLabels: Record<string, string> = {
     border-bottom-right-radius: 4px;
   }
 
-  /* Color schemes */
+  /* Color schemes - kept minimal and functional */
   .flat-badge[data-scheme='stable'] {
     --fb-bg: rgba(34, 197, 94, 0.12);
     --fb-fg: #86efac;
@@ -226,33 +311,33 @@ const osLabels: Record<string, string> = {
     --fb-icon: #f43f5e;
   }
   .flat-badge[data-scheme='lang'] {
-    --fb-bg: rgba(124, 58, 237, 0.12);
+    --fb-bg: rgba(124, 58, 237, 0.10);
     --fb-fg: #ddd6fe;
-    --fb-border: rgba(124, 58, 237, 0.30);
+    --fb-border: rgba(124, 58, 237, 0.25);
     --fb-icon: #8b5cf6;
   }
   .flat-badge[data-scheme='os'] {
-    --fb-bg: rgba(37, 99, 235, 0.12);
+    --fb-bg: rgba(37, 99, 235, 0.10);
     --fb-fg: #bfdbfe;
-    --fb-border: rgba(37, 99, 235, 0.30);
+    --fb-border: rgba(37, 99, 235, 0.25);
     --fb-icon: #3b82f6;
   }
   .flat-badge[data-scheme='web'] {
-    --fb-bg: rgba(236, 72, 153, 0.12);
+    --fb-bg: rgba(236, 72, 153, 0.10);
     --fb-fg: #fbcfe8;
-    --fb-border: rgba(236, 72, 153, 0.30);
+    --fb-border: rgba(236, 72, 153, 0.25);
     --fb-icon: #ec4899;
   }
   .flat-badge[data-scheme='stars'] {
-    --fb-bg: rgba(250, 204, 21, 0.12);
+    --fb-bg: rgba(250, 204, 21, 0.10);
     --fb-fg: #fef08a;
-    --fb-border: rgba(250, 204, 21, 0.30);
+    --fb-border: rgba(250, 204, 21, 0.25);
     --fb-icon: #facc15;
   }
   .flat-badge[data-scheme='updated'] {
-    --fb-bg: rgba(100, 116, 139, 0.15);
+    --fb-bg: rgba(100, 116, 139, 0.12);
     --fb-fg: #cbd5e1;
-    --fb-border: rgba(100, 116, 139, 0.30);
+    --fb-border: rgba(100, 116, 139, 0.25);
     --fb-icon: #94a3b8;
   }
 
@@ -261,43 +346,14 @@ const osLabels: Record<string, string> = {
     gap: 0.3rem;
     flex-wrap: wrap;
   }
-  .badges {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    flex-wrap: wrap;
-  }
 
-  .tagline {
-    margin: 0;
-    font-weight: 500;
-    color: #e8e8e8;
-  }
-  .description {
-    margin: 0;
-    color: #999;
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-  footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-    font-size: 0.8rem;
-    color: #777;
-  }
-  .links {
-    display: flex;
-    gap: 0.75rem;
-    font-size: 0.85rem;
-    margin-top: 0.25rem;
-  }
-  .links a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    color: var(--card-accent);
+  @media (max-width: 520px) {
+    .card-section {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .section-label {
+      width: auto;
+    }
   }
 </style>
