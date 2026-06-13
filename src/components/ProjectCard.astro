@@ -62,7 +62,8 @@ const osLabels: Record<string, string> = {
         <span class="os">
           {project.os.map((o) => (
             <span class="os-pill" title={osLabels[o] || o}>
-              {osLabels[o] || o}
+              <span class="label">OS</span>
+              <span class="value">{osLabels[o] || o}</span>
             </span>
           ))}
         </span>
@@ -198,15 +199,33 @@ const osLabels: Record<string, string> = {
     flex-wrap: wrap;
   }
   .os-pill {
-    display: inline-block;
-    padding: 0.15rem 0.45rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border);
-    color: #aaa;
+    display: inline-flex;
+    align-items: center;
+    height: 20px;
     font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+    line-height: 1;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #18181b;
+    border: 1px solid #27272a;
+    color: #e4e4e7;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+  .os-pill .label {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 0.45rem;
+    background: #27272a;
+    color: #a1a1aa;
+    font-weight: 600;
+  }
+  .os-pill .value {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 0.5rem;
   }
   .meta {
     display: flex;
