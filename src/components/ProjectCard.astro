@@ -45,7 +45,7 @@ const osLabels: Record<string, string> = {
         <a href={project.sources.repo} target="_blank" rel="noopener">{project.name}</a>
       )}
     </h3>
-    <span class={`status status-${project.status}`}>
+    <span class="flat-badge" data-scheme={project.status}>
       <Icon name={statusIcon[project.status]} size={12} />
       {project.status}
     </span>
@@ -53,31 +53,35 @@ const osLabels: Record<string, string> = {
   <p class="tagline">{project.tagline}</p>
   <p class="description">{project.description}</p>
   <footer>
-    <span class="left-meta">
-      <span class="lang">
+    <span class="badges">
+      <span class="flat-badge" data-scheme="lang">
         <Icon name="code" size={12} />
         {project.language}
       </span>
       {project.os.length > 0 && (
-        <span class="os">
+        <span class="flat-badge-group">
           {project.os.map((o) => (
-            <span class="os-pill" title={osLabels[o] || o}>
-              <span class="label">OS</span>
-              <span class="value">{osLabels[o] || o}</span>
+            <span
+              class="flat-badge flat-badge-two-tone"
+              data-scheme={o === 'web' ? 'web' : 'os'}
+              title={osLabels[o] || o}
+            >
+              <span class="flat-badge-label">OS</span>
+              <span class="flat-badge-value">{osLabels[o] || o}</span>
             </span>
           ))}
         </span>
       )}
     </span>
-    <span class="right-meta">
+    <span class="badges">
       {live.stars !== null && (
-        <span class="badge" title="stars">
+        <span class="flat-badge" data-scheme="stars" title="stars">
           <Icon name="star" size={12} />
           {live.stars}
         </span>
       )}
       {live.pushedAt && (
-        <span class="badge" title={`last push: ${live.pushedAt}`}>
+        <span class="flat-badge" data-scheme="updated" title={`last push: ${live.pushedAt}`}>
           <Icon name="clock" size={12} />
           {new Date(live.pushedAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
         </span>
@@ -140,23 +144,130 @@ const osLabels: Record<string, string> = {
     color: var(--card-accent);
     text-decoration: none;
   }
-  .status {
+
+  /* Flat badge system */
+  .flat-badge {
+    --fb-bg: #27272a;
+    --fb-fg: #d4d4d8;
+    --fb-border: #3f3f46;
+    --fb-icon: #a1a1aa;
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
+    height: 20px;
+    padding: 0 0.5rem;
+    border-radius: 4px;
+    background: var(--fb-bg);
+    color: var(--fb-fg);
+    border: 1px solid var(--fb-border);
     font-size: 0.7rem;
+    font-weight: 600;
+    line-height: 1;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 0.15rem 0.55rem;
-    border-radius: 999px;
-    background: #333;
-    color: #ccc;
+    letter-spacing: 0.04em;
     white-space: nowrap;
   }
-  .status-beta { background: #4a3a00; color: #f6c453; }
-  .status-stable { background: #003a2a; color: #7be3a5; }
-  .status-wip { background: #2a2a2a; color: #aaa; }
-  .status-archived { background: #2a1a1a; color: #c98c8c; }
+  .flat-badge svg {
+    color: var(--fb-icon);
+    flex-shrink: 0;
+  }
+
+  /* Two-tone variant: left label, right value */
+  .flat-badge.flat-badge-two-tone {
+    padding: 0;
+    overflow: hidden;
+    border: none;
+    background: transparent;
+  }
+  .flat-badge.flat-badge-two-tone .flat-badge-label,
+  .flat-badge.flat-badge-two-tone .flat-badge-value {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 0.4rem;
+  }
+  .flat-badge.flat-badge-two-tone .flat-badge-label {
+    background: var(--fb-border);
+    color: var(--fb-icon);
+    font-weight: 700;
+  }
+  .flat-badge.flat-badge-two-tone .flat-badge-value {
+    background: var(--fb-bg);
+    color: var(--fb-fg);
+    border: 1px solid var(--fb-border);
+    border-left: none;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+
+  /* Color schemes */
+  .flat-badge[data-scheme='stable'] {
+    --fb-bg: rgba(34, 197, 94, 0.12);
+    --fb-fg: #86efac;
+    --fb-border: rgba(34, 197, 94, 0.35);
+    --fb-icon: #22c55e;
+  }
+  .flat-badge[data-scheme='beta'] {
+    --fb-bg: rgba(245, 158, 11, 0.12);
+    --fb-fg: #fde68a;
+    --fb-border: rgba(245, 158, 11, 0.35);
+    --fb-icon: #f59e0b;
+  }
+  .flat-badge[data-scheme='wip'] {
+    --fb-bg: rgba(148, 163, 184, 0.12);
+    --fb-fg: #e2e8f0;
+    --fb-border: rgba(148, 163, 184, 0.35);
+    --fb-icon: #94a3b8;
+  }
+  .flat-badge[data-scheme='archived'] {
+    --fb-bg: rgba(244, 63, 94, 0.10);
+    --fb-fg: #fecdd3;
+    --fb-border: rgba(244, 63, 94, 0.30);
+    --fb-icon: #f43f5e;
+  }
+  .flat-badge[data-scheme='lang'] {
+    --fb-bg: rgba(124, 58, 237, 0.12);
+    --fb-fg: #ddd6fe;
+    --fb-border: rgba(124, 58, 237, 0.30);
+    --fb-icon: #8b5cf6;
+  }
+  .flat-badge[data-scheme='os'] {
+    --fb-bg: rgba(37, 99, 235, 0.12);
+    --fb-fg: #bfdbfe;
+    --fb-border: rgba(37, 99, 235, 0.30);
+    --fb-icon: #3b82f6;
+  }
+  .flat-badge[data-scheme='web'] {
+    --fb-bg: rgba(236, 72, 153, 0.12);
+    --fb-fg: #fbcfe8;
+    --fb-border: rgba(236, 72, 153, 0.30);
+    --fb-icon: #ec4899;
+  }
+  .flat-badge[data-scheme='stars'] {
+    --fb-bg: rgba(250, 204, 21, 0.12);
+    --fb-fg: #fef08a;
+    --fb-border: rgba(250, 204, 21, 0.30);
+    --fb-icon: #facc15;
+  }
+  .flat-badge[data-scheme='updated'] {
+    --fb-bg: rgba(100, 116, 139, 0.15);
+    --fb-fg: #cbd5e1;
+    --fb-border: rgba(100, 116, 139, 0.30);
+    --fb-icon: #94a3b8;
+  }
+
+  .flat-badge-group {
+    display: inline-flex;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+  }
+  .badges {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
   .tagline {
     margin: 0;
     font-weight: 500;
@@ -172,75 +283,10 @@ const osLabels: Record<string, string> = {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 0.5rem;
     margin-top: 0.5rem;
     font-size: 0.8rem;
     color: #777;
-  }
-  .lang {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-  }
-  .left-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-  }
-  .right-meta {
-    display: flex;
-    gap: 0.4rem;
-    align-items: center;
-    flex-shrink: 0;
-  }
-  .os {
-    display: flex;
-    gap: 0.3rem;
-    flex-wrap: wrap;
-  }
-  .os-pill {
-    display: inline-flex;
-    align-items: center;
-    height: 20px;
-    font-size: 0.7rem;
-    line-height: 1;
-    border-radius: 4px;
-    overflow: hidden;
-    background: #18181b;
-    border: 1px solid #27272a;
-    color: #e4e4e7;
-    font-weight: 500;
-    letter-spacing: 0;
-  }
-  .os-pill .label {
-    display: inline-flex;
-    align-items: center;
-    height: 100%;
-    padding: 0 0.45rem;
-    background: #27272a;
-    color: #a1a1aa;
-    font-weight: 600;
-  }
-  .os-pill .value {
-    display: inline-flex;
-    align-items: center;
-    height: 100%;
-    padding: 0 0.5rem;
-  }
-  .meta {
-    display: flex;
-    gap: 0.4rem;
-    align-items: center;
-  }
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    padding: 0.15rem 0.5rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid var(--border);
-    color: #aaa;
   }
   .links {
     display: flex;
