@@ -50,5 +50,9 @@ const sorted = visible.sort((a, b) => a.order - b.order || a.slug.localeCompare(
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1rem;
+    align-items: stretch;
+  }
+  .grid :global(article) {
+    height: 100%;
   }
 </style>
