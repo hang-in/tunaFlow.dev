@@ -6,7 +6,10 @@
   "track": "ai-dev",
   "status": "wip",
   "language": "Swift",
-  "tags": ["macos", "menubar"],
+  "tags": [
+    "macos",
+    "menubar"
+  ],
   "sources": {
     "repo": "https://github.com/hang-in/tunaPop",
     "host": "github",
@@ -14,5 +17,8 @@
     "name": "tunaPop"
   },
   "featured": [],
-  "order": 6
+  "order": 6,
+  "os": [
+    "macos"
+  ]
 }

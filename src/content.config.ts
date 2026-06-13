@@ -3,6 +3,7 @@ import { glob, file } from 'astro/loaders';
 
 const projectStatus = z.enum(['beta', 'stable', 'wip', 'archived']);
 const projectTrack = z.enum(['ai-dev', 'shader-physics']);
+const projectOs = z.enum(['macos', 'windows', 'linux', 'ios', 'android', 'web', 'all']);
 
 const sources = z.object({
   site: z.string().url().optional(),
@@ -23,6 +24,7 @@ const projects = defineCollection({
     status: projectStatus,
     language: z.string().min(1),
     tags: z.array(z.string()).default([]),
+    os: z.array(projectOs).default([]),
     sources,
     featured: z.array(z.string()).default([]),
     order: z.number().int().min(0).default(100),

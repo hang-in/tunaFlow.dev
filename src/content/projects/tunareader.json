@@ -6,7 +6,11 @@
   "track": "ai-dev",
   "status": "stable",
   "language": "TypeScript",
-  "tags": ["pdf", "rag", "self-hosted"],
+  "tags": [
+    "pdf",
+    "rag",
+    "self-hosted"
+  ],
   "sources": {
     "repo": "https://github.com/hang-in/tunaReader",
     "host": "github",
@@ -14,5 +18,8 @@
     "name": "tunaReader"
   },
   "featured": [],
-  "order": 1
+  "order": 1,
+  "os": [
+    "web"
+  ]
 }

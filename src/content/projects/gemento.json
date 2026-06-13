@@ -6,7 +6,12 @@
   "track": "ai-dev",
   "status": "wip",
   "language": "Python",
-  "tags": ["gemma", "local-llm", "research", "memory"],
+  "tags": [
+    "gemma",
+    "local-llm",
+    "research",
+    "memory"
+  ],
   "sources": {
     "repo": "https://github.com/hang-in/gemento",
     "host": "github",
@@ -14,5 +19,10 @@
     "name": "gemento"
   },
   "featured": [],
-  "order": 11
+  "order": 11,
+  "os": [
+    "macos",
+    "linux",
+    "windows"
+  ]
 }

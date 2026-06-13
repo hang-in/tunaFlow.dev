@@ -6,7 +6,11 @@
   "track": "shader-physics",
   "status": "wip",
   "language": "TypeScript",
-  "tags": ["webgpu", "shader", "blackhole"],
+  "tags": [
+    "webgpu",
+    "shader",
+    "blackhole"
+  ],
   "sources": {
     "repo": "https://git.d9ng.co.kr/d9ng/blackbit",
     "host": "gitea",
@@ -14,5 +18,8 @@
     "name": "blackbit"
   },
   "featured": [],
-  "order": 2
+  "order": 2,
+  "os": [
+    "web"
+  ]
 }

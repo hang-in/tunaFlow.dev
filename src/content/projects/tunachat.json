@@ -6,7 +6,10 @@
   "track": "ai-dev",
   "status": "archived",
   "language": "TypeScript",
-  "tags": ["visualization", "tokens"],
+  "tags": [
+    "visualization",
+    "tokens"
+  ],
   "sources": {
     "repo": "https://github.com/hang-in/tunaChat",
     "host": "github",
@@ -14,5 +17,8 @@
     "name": "tunaChat"
   },
   "featured": [],
-  "order": 7
+  "order": 7,
+  "os": [
+    "web"
+  ]
 }

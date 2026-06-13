@@ -6,14 +6,25 @@
   "track": "ai-dev",
   "status": "beta",
   "language": "Rust + TS",
-  "tags": ["desktop", "tauri", "multi-agent", "cli"],
+  "tags": [
+    "desktop",
+    "tauri",
+    "multi-agent",
+    "cli"
+  ],
   "sources": {
     "repo": "https://github.com/hang-in/tunaFlow",
     "host": "github",
     "owner": "hang-in",
     "name": "tunaFlow"
   },
-  "featured": ["ai-dev"],
+  "featured": [
+    "ai-dev"
+  ],
   "order": 0,
-  "version": "v0.1.5-beta"
+  "version": "v0.1.5-beta",
+  "os": [
+    "macos",
+    "windows"
+  ]
 }

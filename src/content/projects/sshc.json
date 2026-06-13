@@ -6,7 +6,12 @@
   "track": "ai-dev",
   "status": "stable",
   "language": "Rust",
-  "tags": ["tui", "ssh", "cli", "rust"],
+  "tags": [
+    "tui",
+    "ssh",
+    "cli",
+    "rust"
+  ],
   "sources": {
     "repo": "https://github.com/hang-in/sshc",
     "host": "github",
@@ -14,5 +19,10 @@
     "name": "sshc"
   },
   "featured": [],
-  "order": 9
+  "order": 9,
+  "os": [
+    "macos",
+    "linux",
+    "windows"
+  ]
 }

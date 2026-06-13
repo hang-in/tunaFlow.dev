@@ -6,7 +6,12 @@
   "track": "ai-dev",
   "status": "stable",
   "language": "Rust",
-  "tags": ["ai", "wiki", "search", "local-first"],
+  "tags": [
+    "ai",
+    "wiki",
+    "search",
+    "local-first"
+  ],
   "sources": {
     "repo": "https://github.com/hang-in/seCall",
     "host": "github",
@@ -14,5 +19,10 @@
     "name": "seCall"
   },
   "featured": [],
-  "order": 10
+  "order": 10,
+  "os": [
+    "macos",
+    "linux",
+    "windows"
+  ]
 }

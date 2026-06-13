@@ -6,7 +6,11 @@
   "track": "shader-physics",
   "status": "stable",
   "language": "TypeScript",
-  "tags": ["webgpu", "three", "rendering"],
+  "tags": [
+    "webgpu",
+    "three",
+    "rendering"
+  ],
   "sources": {
     "site": "https://sol.d9ng.co.kr",
     "repo": "https://github.com/hang-in/solbit",
@@ -15,5 +19,8 @@
     "name": "solbit"
   },
   "featured": [],
-  "order": 1
+  "order": 1,
+  "os": [
+    "web"
+  ]
 }

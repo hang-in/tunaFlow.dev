@@ -6,7 +6,12 @@
   "track": "shader-physics",
   "status": "stable",
   "language": "TypeScript",
-  "tags": ["webgpu", "three", "physics", "n-body"],
+  "tags": [
+    "webgpu",
+    "three",
+    "physics",
+    "n-body"
+  ],
   "sources": {
     "site": "https://sol.d9ng.co.kr",
     "repo": "https://git.d9ng.co.kr/d9ng/solgrbit",
@@ -14,6 +19,11 @@
     "owner": "d9ng",
     "name": "solgrbit"
   },
-  "featured": ["shader-physics"],
-  "order": 0
+  "featured": [
+    "shader-physics"
+  ],
+  "order": 0,
+  "os": [
+    "web"
+  ]
 }

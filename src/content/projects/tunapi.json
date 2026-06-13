@@ -6,7 +6,9 @@
   "track": "ai-dev",
   "status": "wip",
   "language": "Python",
-  "tags": ["workflow"],
+  "tags": [
+    "workflow"
+  ],
   "sources": {
     "repo": "https://github.com/hang-in/tunaPi",
     "host": "github",
@@ -14,5 +16,10 @@
     "name": "tunaPi"
   },
   "featured": [],
-  "order": 5
+  "order": 5,
+  "os": [
+    "macos",
+    "linux",
+    "windows"
+  ]
 }

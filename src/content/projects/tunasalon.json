@@ -6,7 +6,11 @@
   "track": "ai-dev",
   "status": "stable",
   "language": "Rust",
-  "tags": ["tui", "multi-agent", "local-llm"],
+  "tags": [
+    "tui",
+    "multi-agent",
+    "local-llm"
+  ],
   "sources": {
     "repo": "https://github.com/hang-in/tunaSalon",
     "host": "github",
@@ -14,5 +18,10 @@
     "name": "tunaSalon"
   },
   "featured": [],
-  "order": 2
+  "order": 2,
+  "os": [
+    "macos",
+    "linux",
+    "windows"
+  ]
 }

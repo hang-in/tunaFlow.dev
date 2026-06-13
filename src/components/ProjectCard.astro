@@ -20,6 +20,16 @@ const statusIcon = {
   wip: 'code',
   archived: 'clock',
 } as const;
+
+const osLabels: Record<string, string> = {
+  macos: 'macOS',
+  windows: 'Windows',
+  linux: 'Linux',
+  ios: 'iOS',
+  android: 'Android',
+  web: 'Web',
+  all: 'All platforms',
+};
 ---
 <article
   class="card"
@@ -43,11 +53,22 @@ const statusIcon = {
   <p class="tagline">{project.tagline}</p>
   <p class="description">{project.description}</p>
   <footer>
-    <span class="lang">
-      <Icon name="code" size={12} />
-      {project.language}
+    <span class="left-meta">
+      <span class="lang">
+        <Icon name="code" size={12} />
+        {project.language}
+      </span>
+      {project.os.length > 0 && (
+        <span class="os">
+          {project.os.map((o) => (
+            <span class="os-pill" title={osLabels[o] || o}>
+              {osLabels[o] || o}
+            </span>
+          ))}
+        </span>
+      )}
     </span>
-    <span class="meta">
+    <span class="right-meta">
       {live.stars !== null && (
         <span class="badge" title="stars">
           <Icon name="star" size={12} />
@@ -158,6 +179,34 @@ const statusIcon = {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
+  }
+  .left-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .right-meta {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .os {
+    display: flex;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+  }
+  .os-pill {
+    display: inline-block;
+    padding: 0.15rem 0.45rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    color: #aaa;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
   .meta {
     display: flex;

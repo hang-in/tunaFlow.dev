@@ -6,7 +6,10 @@
   "track": "ai-dev",
   "status": "wip",
   "language": "Python",
-  "tags": ["local-llm", "bridge"],
+  "tags": [
+    "local-llm",
+    "bridge"
+  ],
   "sources": {
     "repo": "https://github.com/hang-in/tunaLlama",
     "host": "github",
@@ -14,5 +17,10 @@
     "name": "tunaLlama"
   },
   "featured": [],
-  "order": 4
+  "order": 4,
+  "os": [
+    "macos",
+    "linux",
+    "windows"
+  ]
 }
