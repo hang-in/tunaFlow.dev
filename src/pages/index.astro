@@ -1,0 +1,73 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import TrackHeadline from '~/components/TrackHeadline.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+const site = await getEntry('site', 'config');
+if (!site) throw new Error('site/config.json missing');
+
+const all = (await getCollection('projects')).map((e) => e.data);
+const visible = all.filter((p) => !p.hidden);
+
+const tracks = ['ai-dev', 'shader-physics'] as const;
+const byTrack = Object.fromEntries(
+  tracks.map((t) => [t, visible.filter((p) => p.track === t).sort((a, b) => a.order - b.order || a.slug.localeCompare(b.slug))]),
+);
+---
+<BaseLayout
+  title={site.data.title}
+  description={site.data.description}
+>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">{site.data.eyebrow}</p>
+      <h1>
+        <span class="brand">tunaFlow</span> is a product — and a family.
+      </h1>
+      <p class="lede">
+        A small set of focused, open-source dev tools built by
+        <a href={site.data.links.github} target="_blank" rel="noopener">hang-in</a>.
+        On one track, tools for working with coding agents. On the other, real-time
+        graphics and physics. Both share a name, an aesthetic, and a refusal to bloat.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="/projects">Browse the family</a>
+        <a class="btn" href="https://github.com/hang-in/tunaFlow" target="_blank" rel="noopener">
+          Get tunaFlow →
+        </a>
+      </div>
+    </section>
+
+    {tracks.map((t) => (
+      <TrackHeadline
+        track={t}
+        heading={site.data.tracks[t].heading}
+        lede={site.data.tracks[t].lede}
+        featuredSlugs={site.data.featured[t]}
+        allInTrack={byTrack[t]}
+      />
+    ))}
+  </main>
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    margin: 2rem 0 3rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    margin: 0 0 1.25rem;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .brand { color: var(--accent); }
+  .lede {
+    max-width: 640px;
+    margin: 0 auto 2rem;
+    color: #ccc;
+    font-size: 1.1rem;
+  }
+  .lede a { color: var(--accent); }
+  .cta { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+</style>

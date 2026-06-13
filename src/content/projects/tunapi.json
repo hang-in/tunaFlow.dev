@@ -1,0 +1,18 @@
+{
+  "slug": "tunapi",
+  "name": "tunaPi",
+  "tagline": "Ship code horizontally.",
+  "description": "A tool for distributing code work across parallel surfaces. Lightweight, dependency-free.",
+  "track": "ai-dev",
+  "status": "wip",
+  "language": "Python",
+  "tags": ["workflow"],
+  "sources": {
+    "repo": "https://github.com/hang-in/tunaPi",
+    "host": "github",
+    "owner": "hang-in",
+    "name": "tunaPi"
+  },
+  "featured": [],
+  "order": 5
+}

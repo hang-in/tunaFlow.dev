@@ -1,0 +1,18 @@
+{
+  "slug": "tunasalon",
+  "name": "tunaSalon",
+  "tagline": "Small-talk TUI for local-LLM personas.",
+  "description": "A Hawkes-intensity engine decides who speaks when; a silence gate and RRF decide when the room goes quiet.",
+  "track": "ai-dev",
+  "status": "stable",
+  "language": "Rust",
+  "tags": ["tui", "multi-agent", "local-llm"],
+  "sources": {
+    "repo": "https://github.com/hang-in/tunaSalon",
+    "host": "github",
+    "owner": "hang-in",
+    "name": "tunaSalon"
+  },
+  "featured": [],
+  "order": 2
+}

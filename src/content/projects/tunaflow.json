@@ -1,0 +1,19 @@
+{
+  "slug": "tunaflow",
+  "name": "tunaFlow",
+  "tagline": "One surface for Claude Code, Codex, Gemini, and local engines.",
+  "description": "A desktop client for orchestrating subscription-tier CLI coding agents inside a single Plan → Dev → Review workflow. Cross-vendor blind review, branch/adopt, CLI-first.",
+  "track": "ai-dev",
+  "status": "beta",
+  "language": "Rust + TS",
+  "tags": ["desktop", "tauri", "multi-agent", "cli"],
+  "sources": {
+    "repo": "https://github.com/hang-in/tunaFlow",
+    "host": "github",
+    "owner": "hang-in",
+    "name": "tunaFlow"
+  },
+  "featured": ["ai-dev"],
+  "order": 0,
+  "version": "v0.1.5-beta"
+}

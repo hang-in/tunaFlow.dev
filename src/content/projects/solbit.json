@@ -1,0 +1,19 @@
+{
+  "slug": "solbit",
+  "name": "solbit",
+  "tagline": "WebGPU solar system — the lighter sibling.",
+  "description": "A cinematic Three.js solar system with synchronized server clocks, orbit camera, and per-body shading. Powers sol.d9ng.co.kr.",
+  "track": "shader-physics",
+  "status": "stable",
+  "language": "TypeScript",
+  "tags": ["webgpu", "three", "rendering"],
+  "sources": {
+    "site": "https://sol.d9ng.co.kr",
+    "repo": "https://github.com/hang-in/solbit",
+    "host": "github",
+    "owner": "hang-in",
+    "name": "solbit"
+  },
+  "featured": [],
+  "order": 1
+}

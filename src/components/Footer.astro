@@ -1,0 +1,47 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  site?: CollectionEntry<'site'>['data'];
+}
+const { site } = Astro.props;
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="inner">
+    <div>
+      <strong>tunaFlow</strong> — a family of focused, open-source dev tools by
+      {site?.links?.github
+        ? <a href={site.links.github} target="_blank" rel="noopener">hang-in</a>
+        : 'hang-in'
+      }.
+    </div>
+    <div class="links">
+      {site?.links?.github && (
+        <a href={site.links.github} target="_blank" rel="noopener">GitHub</a>
+      )}
+      <span class="muted">© {year}</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--border);
+    margin-top: 4rem;
+  }
+  .inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .links { display: flex; gap: 1rem; align-items: center; }
+  .muted { color: var(--muted); }
+</style>

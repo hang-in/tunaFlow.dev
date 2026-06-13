@@ -1,0 +1,18 @@
+{
+  "slug": "tunapop",
+  "name": "tunaPop",
+  "tagline": "A macOS companion for the tuna family.",
+  "description": "Native menu bar utilities that surface tunaFlow and sibling tools where the work happens.",
+  "track": "ai-dev",
+  "status": "wip",
+  "language": "Swift",
+  "tags": ["macos", "menubar"],
+  "sources": {
+    "repo": "https://github.com/hang-in/tunaPop",
+    "host": "github",
+    "owner": "hang-in",
+    "name": "tunaPop"
+  },
+  "featured": [],
+  "order": 6
+}

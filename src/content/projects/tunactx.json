@@ -1,0 +1,18 @@
+{
+  "slug": "tunactx",
+  "name": "tunaCtx",
+  "tagline": "Trigger-driven dynamic context loading for code-aware agents.",
+  "description": "A production-hardened fork of CTX. Modulized, packaged, regression-guarded, and instrumented for real-world Claude Code hook use.",
+  "track": "ai-dev",
+  "status": "stable",
+  "language": "Python",
+  "tags": ["context", "claude-code", "hooks"],
+  "sources": {
+    "repo": "https://github.com/hang-in/tunaCtx",
+    "host": "github",
+    "owner": "hang-in",
+    "name": "tunaCtx"
+  },
+  "featured": [],
+  "order": 3
+}

@@ -1,0 +1,18 @@
+{
+  "slug": "tunallama",
+  "name": "tunaLlama",
+  "tagline": "Bridge local LLMs into Claude and Codex surfaces.",
+  "description": "A small adapter for routing local model servers into the same surface area as cloud CLI tools.",
+  "track": "ai-dev",
+  "status": "wip",
+  "language": "Python",
+  "tags": ["local-llm", "bridge"],
+  "sources": {
+    "repo": "https://github.com/hang-in/tunaLlama",
+    "host": "github",
+    "owner": "hang-in",
+    "name": "tunaLlama"
+  },
+  "featured": [],
+  "order": 4
+}

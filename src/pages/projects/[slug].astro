@@ -1,0 +1,111 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import ProjectCard from '~/components/ProjectCard.astro';
+
+export async function getStaticPaths() {
+  const all = await getCollection('projects');
+  return all.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const project = entry.data;
+const all = (await getCollection('projects')).map((e) => e.data);
+const related = all
+  .filter((p) => p.track === project.track && p.slug !== project.slug)
+  .sort((a, b) => a.order - b.order)
+  .slice(0, 3);
+---
+<BaseLayout
+  title={`${project.name} — tunaFlow`}
+  description={project.tagline}
+>
+  <main>
+    <article class="detail">
+      <a class="back" href="/projects">← All projects</a>
+      <header>
+        <p class="eyebrow">{project.track === 'ai-dev' ? 'AI dev' : 'Real-time graphics & physics'}</p>
+        <h1>{project.name}</h1>
+        <p class="lede">{project.tagline}</p>
+        <div class="badges">
+          <span class={`status status-${project.status}`}>{project.status}</span>
+          <span class="meta">{project.language}</span>
+          {project.version && <span class="meta">{project.version}</span>}
+        </div>
+      </header>
+
+      <p class="description">{project.description}</p>
+
+      {project.tags.length > 0 && (
+        <ul class="tags">
+          {project.tags.map((t) => <li>#{t}</li>)}
+        </ul>
+      )}
+
+      <div class="cta">
+        {project.sources.site && (
+          <a class="btn primary" href={project.sources.site} target="_blank" rel="noopener">
+            Open live site →
+          </a>
+        )}
+        <a class="btn" href={project.sources.repo} target="_blank" rel="noopener">
+          View repository →
+        </a>
+      </div>
+    </article>
+
+    {related.length > 0 && (
+      <section class="related">
+        <h2>Related</h2>
+        <div class="grid">
+          {related.map((p) => <ProjectCard project={p} />)}
+        </div>
+      </section>
+    )}
+  </main>
+</BaseLayout>
+
+<style>
+  .detail { max-width: 720px; margin: 0 auto; }
+  .back { color: var(--muted); font-size: 0.9rem; }
+  .back:hover { color: var(--fg); text-decoration: none; }
+  header { margin: 1.5rem 0 2rem; }
+  h1 { font-size: 3rem; margin: 0 0 0.5rem; letter-spacing: -0.02em; }
+  .lede { color: #ccc; font-size: 1.15rem; margin: 0 0 1rem; }
+  .badges { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+  .status {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    background: #333;
+    color: #ccc;
+  }
+  .status-beta { background: #4a3a00; color: #f6c453; }
+  .status-stable { background: #003a2a; color: #7be3a5; }
+  .status-wip { background: #2a2a2a; color: #aaa; }
+  .status-archived { background: #2a1a1a; color: #c98c8c; }
+  .meta { color: var(--muted); font-size: 0.85rem; }
+  .description { color: #ddd; font-size: 1.05rem; line-height: 1.7; }
+  .tags { list-style: none; padding: 0; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tags li {
+    color: var(--muted);
+    font-size: 0.85rem;
+    background: #1a1a1a;
+    border: 1px solid var(--border);
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+  }
+  .cta { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2rem; }
+  .related { margin-top: 5rem; }
+  .related h2 { font-size: 1.4rem; margin: 0 0 1rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+</style>

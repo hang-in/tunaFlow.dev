@@ -1,0 +1,72 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  track: 'ai-dev' | 'shader-physics';
+  heading: string;
+  lede: string;
+  featuredSlugs: string[];
+  allInTrack: CollectionEntry<'projects'>['data'][];
+}
+
+const { track, heading, lede, featuredSlugs, allInTrack } = Astro.props;
+
+const featured = featuredSlugs
+  .map((slug) => allInTrack.find((p) => p.slug === slug))
+  .filter((p): p is CollectionEntry<'projects'>['data'] => !!p);
+
+const headliner = featured[0];
+const runnerUp = featured[1];
+const tail = allInTrack
+  .filter((p) => !featuredSlugs.includes(p.slug))
+  .sort((a, b) => a.order - b.order || a.slug.localeCompare(b.slug));
+---
+<section class="track" data-track={track}>
+  <header class="track-header">
+    <h2>{heading}</h2>
+    <p class="lede">{lede}</p>
+  </header>
+
+  {headliner && (
+    <div class="headliner">
+      <ProjectCard project={headliner} variant="featured" />
+      {runnerUp && <ProjectCard project={runnerUp} variant="featured" />}
+    </div>
+  )}
+
+  {tail.length > 0 && (
+    <div class="grid">
+      {tail.map((p) => <ProjectCard project={p} />)}
+    </div>
+  )}
+</section>
+
+<style>
+  .track {
+    margin: 5rem 0;
+  }
+  .track-header {
+    margin-bottom: 1.5rem;
+  }
+  .track-header h2 {
+    font-size: 1.8rem;
+    margin: 0 0 0.4rem;
+  }
+  .lede {
+    color: var(--muted);
+    margin: 0;
+    max-width: 60ch;
+  }
+  .headliner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+</style>

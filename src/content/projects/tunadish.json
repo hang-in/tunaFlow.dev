@@ -1,0 +1,18 @@
+{
+  "slug": "tunadish",
+  "name": "tunaDish",
+  "tagline": "Burn your tokens, again.",
+  "description": "The simpler sibling of tunaChat. A reference impl for token-stream visualisation.",
+  "track": "ai-dev",
+  "status": "archived",
+  "language": "TypeScript",
+  "tags": ["visualization", "tokens"],
+  "sources": {
+    "repo": "https://github.com/hang-in/tunaDish",
+    "host": "github",
+    "owner": "hang-in",
+    "name": "tunaDish"
+  },
+  "featured": [],
+  "order": 8
+}

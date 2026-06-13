@@ -1,0 +1,18 @@
+{
+  "slug": "tunareader",
+  "name": "tunaReader",
+  "tagline": "Self-hosted reading assistant for finance and narrative PDFs.",
+  "description": "Markdown parser that preserves page and block coordinates, hybrid BM25 + vector search to surface relevant sections instantly.",
+  "track": "ai-dev",
+  "status": "stable",
+  "language": "TypeScript",
+  "tags": ["pdf", "rag", "self-hosted"],
+  "sources": {
+    "repo": "https://github.com/hang-in/tunaReader",
+    "host": "github",
+    "owner": "hang-in",
+    "name": "tunaReader"
+  },
+  "featured": [],
+  "order": 1
+}

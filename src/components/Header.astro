@@ -1,0 +1,55 @@
+---
+const path = Astro.url.pathname;
+const isActive = (p: string) => path === p || (p !== '/' && path.startsWith(p));
+---
+<header class="site-header">
+  <a class="brand" href="/">
+    <span class="brand-name">tunaFlow</span>
+    <span class="brand-sub">/ family</span>
+  </a>
+  <nav>
+    <a href="/" class:list={[{ active: isActive('/') }]}>Home</a>
+    <a href="/projects" class:list={[{ active: isActive('/projects') }]}>Projects</a>
+    <a href="https://github.com/hang-in" target="_blank" rel="noopener">GitHub →</a>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    text-decoration: none;
+    color: var(--fg);
+  }
+  .brand:hover { text-decoration: none; }
+  .brand-name {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .brand-sub {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  nav {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.95rem;
+  }
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  nav a:hover { color: var(--fg); text-decoration: none; }
+  nav a.active { color: var(--fg); }
+</style>

@@ -1,0 +1,18 @@
+{
+  "slug": "tunachat",
+  "name": "tunaChat",
+  "tagline": "Burn your tokens — visually.",
+  "description": "A live visualisation of token spend across sessions. Built to make usage legible.",
+  "track": "ai-dev",
+  "status": "archived",
+  "language": "TypeScript",
+  "tags": ["visualization", "tokens"],
+  "sources": {
+    "repo": "https://github.com/hang-in/tunaChat",
+    "host": "github",
+    "owner": "hang-in",
+    "name": "tunaChat"
+  },
+  "featured": [],
+  "order": 7
+}

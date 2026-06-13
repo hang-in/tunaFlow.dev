@@ -1,0 +1,22 @@
+{
+  "title": "tunaFlow",
+  "description": "A family of focused, open-source dev tools from hang-in. AI agents on one side, real-time graphics and physics on the other.",
+  "eyebrow": "Of the agent, By the agent, For the agent",
+  "tracks": {
+    "ai-dev": {
+      "heading": "AI dev",
+      "lede": "Tools for working with coding agents — orchestrating, routing, visualising, and grounding them."
+    },
+    "shader-physics": {
+      "heading": "Real-time graphics & physics",
+      "lede": "WebGPU-first simulations. Solar systems, gravity, black holes. Built for the browser, run on your GPU."
+    }
+  },
+  "featured": {
+    "ai-dev": ["tunaflow"],
+    "shader-physics": ["solgrbit"]
+  },
+  "links": {
+    "github": "https://github.com/hang-in"
+  }
+}

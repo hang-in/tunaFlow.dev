@@ -1,0 +1,19 @@
+{
+  "slug": "solgrbit",
+  "name": "solgrbit",
+  "tagline": "WebGPU gravity solar system — interactive, real-time, in your browser.",
+  "description": "A Three.js + WebGPU solar system with full n-body gravity. Server-synced clocks, cinematic camera modes, and a sandbox where you can poke orbits with your mouse.",
+  "track": "shader-physics",
+  "status": "stable",
+  "language": "TypeScript",
+  "tags": ["webgpu", "three", "physics", "n-body"],
+  "sources": {
+    "site": "https://sol.d9ng.co.kr",
+    "repo": "https://git.d9ng.co.kr/d9ng/solgrbit",
+    "host": "gitea",
+    "owner": "d9ng",
+    "name": "solgrbit"
+  },
+  "featured": ["shader-physics"],
+  "order": 0
+}
