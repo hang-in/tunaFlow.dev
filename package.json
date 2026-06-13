@@ -10,7 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "fetch:metadata": "node --experimental-strip-types scripts/fetch-metadata.ts",
+    "fetch:metadata": "node scripts/fetch-metadata.mjs",
     "check": "astro check"
   },
   "dependencies": {
