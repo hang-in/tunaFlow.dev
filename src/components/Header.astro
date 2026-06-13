@@ -11,6 +11,7 @@ const isActive = (p: string) => path === p || (p !== '/' && path.startsWith(p));
   <nav>
     <a href="/" class:list={[{ active: isActive('/') }]}>Home</a>
     <a href="/projects" class:list={[{ active: isActive('/projects') }]}>Projects</a>
+    <a href="https://blog.d9ng.co.kr" target="_blank" rel="noopener">Blog</a>
     <a href="https://github.com/hang-in" target="_blank" rel="noopener" class="github-link">
       <Icon name="github" size={18} />
       GitHub
