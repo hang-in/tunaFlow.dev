@@ -1,13 +1,15 @@
 :root {
-  --bg: #0a0a0a;
-  --fg: #f0f0f0;
-  --muted: #888;
+  --bg: #050508;
+  --bg-2: #0a0a10;
+  --fg: #f4f4f5;
+  --muted: #7a7a85;
   --accent: #5b8def;
   --accent-2: #f6c453;
-  --border: #2a2a2a;
-  --card-bg: #111;
-  --card-bg-2: #14213d;
+  --border: rgba(255, 255, 255, 0.08);
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-bg-2: rgba(91, 141, 239, 0.08);
   --max: 1100px;
+  --radius: 16px;
 }
 
 * {
@@ -23,6 +25,13 @@ body {
   font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+@supports (animation-timeline: scroll()) {
+  html {
+    scroll-timeline: --page-scroll block;
+  }
 }
 
 a {
@@ -36,39 +45,111 @@ a:hover {
 main {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 4rem 1.5rem 6rem;
+  padding: 0 1.5rem 6rem;
 }
 
 .eyebrow {
   color: var(--muted);
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.75rem;
 }
 
 .btn {
-  display: inline-block;
-  padding: 0.7rem 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.8rem 1.4rem;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 999px;
   color: var(--fg);
   font-size: 0.95rem;
-  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  font-weight: 500;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
   text-decoration: none;
 }
 .btn:hover {
-  border-color: var(--accent);
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-1px);
   text-decoration: none;
 }
 .btn.primary {
   background: var(--accent);
   border-color: var(--accent);
-  color: #0a0a0a;
-  font-weight: 600;
+  color: #050508;
 }
 .btn.primary:hover {
   background: #7aa4ff;
   border-color: #7aa4ff;
-  color: #0a0a0a;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0.2;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+              transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scroll-driven parallax layers */
+.parallax-slow {
+  transform: translateY(0);
+}
+
+@supports (animation-timeline: scroll()) {
+  .parallax-slow {
+    animation: parallax-slow 1s linear;
+    animation-timeline: --page-scroll;
+    animation-range: entry 0% exit 100%;
+  }
+  @keyframes parallax-slow {
+    to { transform: translateY(-80px); }
+  }
+
+  .parallax-fast {
+    animation: parallax-fast 1s linear;
+    animation-timeline: --page-scroll;
+    animation-range: entry 0% exit 100%;
+  }
+  @keyframes parallax-fast {
+    to { transform: translateY(60px); }
+  }
+
+  .hero-scale {
+    animation: hero-scale 1s linear;
+    animation-timeline: --page-scroll;
+    animation-range: entry 0% cover 50%;
+  }
+  @keyframes hero-scale {
+    to { transform: scale(0.92); opacity: 0.4; }
+  }
+
+  .fade-on-scroll {
+    animation: fade-on-scroll 1s linear;
+    animation-timeline: --page-scroll;
+    animation-range: entry 0% exit 50%;
+  }
+  @keyframes fade-on-scroll {
+    to { opacity: 0.3; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .parallax-slow,
+  .parallax-fast,
+  .hero-scale,
+  .fade-on-scroll {
+    animation: none !important;
+  }
 }

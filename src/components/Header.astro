@@ -10,19 +10,24 @@ const isActive = (p: string) => path === p || (p !== '/' && path.startsWith(p));
   <nav>
     <a href="/" class:list={[{ active: isActive('/') }]}>Home</a>
     <a href="/projects" class:list={[{ active: isActive('/projects') }]}>Projects</a>
-    <a href="https://github.com/hang-in" target="_blank" rel="noopener">GitHub →</a>
+    <a href="https://github.com/hang-in" target="_blank" rel="noopener">GitHub -\u003e</a>
   </nav>
 </header>
 
 <style>
   .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
     display: flex;
     align-items: center;
     justify-content: space-between;
     max-width: var(--max);
     margin: 0 auto;
-    padding: 1.25rem 1.5rem;
+    padding: 1rem 1.5rem;
     border-bottom: 1px solid var(--border);
+    background: rgba(5, 5, 8, 0.75);
+    backdrop-filter: blur(12px);
   }
   .brand {
     display: flex;
@@ -49,6 +54,7 @@ const isActive = (p: string) => path === p || (p !== '/' && path.startsWith(p));
   nav a {
     color: var(--muted);
     text-decoration: none;
+    transition: color 0.2s;
   }
   nav a:hover { color: var(--fg); text-decoration: none; }
   nav a.active { color: var(--fg); }

@@ -1,5 +1,6 @@
 ---
 import ProjectCard from './ProjectCard.astro';
+import Reveal from './Reveal.astro';
 import type { CollectionEntry } from 'astro:content';
 
 export interface Props {
@@ -23,40 +24,56 @@ const tail = allInTrack
   .sort((a, b) => a.order - b.order || a.slug.localeCompare(b.slug));
 ---
 <section class="track" data-track={track}>
-  <header class="track-header">
-    <h2>{heading}</h2>
-    <p class="lede">{lede}</p>
-  </header>
+  <Reveal>
+    <header class="track-header">
+      <p class="eyebrow">Track</p>
+      <h2>{heading}</h2>
+      <p class="lede">{lede}</p>
+    </header>
+  </Reveal>
 
   {headliner && (
     <div class="headliner">
-      <ProjectCard project={headliner} variant="featured" />
-      {runnerUp && <ProjectCard project={runnerUp} variant="featured" />}
+      <div class="reveal">
+        <ProjectCard project={headliner} variant="featured" />
+      </div>
+      {runnerUp && (
+        <div class="reveal">
+          <ProjectCard project={runnerUp} variant="featured" />
+        </div>
+      )}
     </div>
   )}
 
   {tail.length > 0 && (
     <div class="grid">
-      {tail.map((p) => <ProjectCard project={p} />)}
+      {tail.map((p, i) => (
+        <div class="reveal" style={`transition-delay: ${(i % 3) * 80}ms`}>
+          <ProjectCard project={p} />
+        </div>
+      ))}
     </div>
   )}
 </section>
 
 <style>
   .track {
-    margin: 5rem 0;
+    margin: 0;
   }
   .track-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    padding-top: 2rem;
   }
   .track-header h2 {
-    font-size: 1.8rem;
-    margin: 0 0 0.4rem;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.02em;
   }
-  .lede {
+  .track-header .lede {
     color: var(--muted);
     margin: 0;
     max-width: 60ch;
+    font-size: 1.05rem;
   }
   .headliner {
     display: grid;

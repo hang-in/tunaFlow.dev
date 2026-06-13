@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import TrackHeadline from '~/components/TrackHeadline.astro';
+import Reveal from '~/components/Reveal.astro';
 import { getCollection, getEntry } from 'astro:content';
 
 const site = await getEntry('site', 'config');
@@ -19,55 +20,84 @@ const byTrack = Object.fromEntries(
   description={site.data.description}
 >
   <main>
-    <section class="hero">
-      <p class="eyebrow">{site.data.eyebrow}</p>
-      <h1>
-        <span class="brand">tunaFlow</span> is a product - and a family.
-      </h1>
-      <p class="lede">
-        A small set of focused, open-source dev tools built by
-        <a href={site.data.links.github} target="_blank" rel="noopener">hang-in</a>.
-        On one track, tools for working with coding agents. On the other, real-time
-        graphics and physics. Both share a name, an aesthetic, and a refusal to bloat.
-      </p>
-      <div class="cta">
-        <a class="btn primary" href="/projects">Browse the family</a>
-        <a class="btn" href="https://github.com/hang-in/tunaFlow" target="_blank" rel="noopener">
-          Get tunaFlow →
-        </a>
-      </div>
+    <section class="hero hero-scale">
+      <Reveal delay={0}>
+        <p class="eyebrow">{site.data.eyebrow}</p>
+      </Reveal>
+      <Reveal delay={80}>
+        <h1>
+          <span class="brand">tunaFlow</span> is a product - and a family.
+        </h1>
+      </Reveal>
+      <Reveal delay={160}>
+        <p class="lede">
+          A small set of focused, open-source dev tools built by
+          <a href={site.data.links.github} target="_blank" rel="noopener">hang-in</a>.
+          On one track, tools for working with coding agents. On the other, real-time
+          graphics and physics. Both share a name, an aesthetic, and a refusal to bloat.
+        </p>
+      </Reveal>
+      <Reveal delay={240}>
+        <div class="cta">
+          <a class="btn primary" href="/projects">Browse the family</a>
+          <a class="btn" href="https://github.com/hang-in/tunaFlow" target="_blank" rel="noopener">
+            Get tunaFlow ->
+          </a>
+        </div>
+      </Reveal>
     </section>
 
-    {tracks.map((t) => (
-      <TrackHeadline
-        track={t}
-        heading={site.data.tracks[t].heading}
-        lede={site.data.tracks[t].lede}
-        featuredSlugs={site.data.featured[t]}
-        allInTrack={byTrack[t]}
-      />
-    ))}
+    <section class="tracks">
+      {tracks.map((t) => (
+        <TrackHeadline
+          track={t}
+          heading={site.data.tracks[t].heading}
+          lede={site.data.tracks[t].lede}
+          featuredSlugs={site.data.featured[t]}
+          allInTrack={byTrack[t]}
+        />
+      ))}
+    </section>
   </main>
 </BaseLayout>
 
 <style>
   .hero {
-    text-align: center;
-    margin: 2rem 0 3rem;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    padding-top: 4rem;
+    position: relative;
+    z-index: 1;
   }
   .hero h1 {
-    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-size: clamp(2.8rem, 7vw, 5rem);
     margin: 0 0 1.25rem;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    max-width: 900px;
   }
-  .brand { color: var(--accent); }
+  .brand {
+    color: var(--accent);
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
   .lede {
-    max-width: 640px;
-    margin: 0 auto 2rem;
-    color: #ccc;
-    font-size: 1.1rem;
+    max-width: 620px;
+    color: #b0b0b8;
+    font-size: 1.15rem;
+    margin: 0 0 2rem;
   }
   .lede a { color: var(--accent); }
-  .cta { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+  .cta { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .tracks {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+  }
 </style>

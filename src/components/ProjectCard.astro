@@ -10,7 +10,6 @@ export interface Props {
 const { project, variant = 'default' } = Astro.props;
 const live = await getMetadata(project.sources);
 const isAi = project.track === 'ai-dev';
-const isShader = project.track === 'shader-physics';
 const accent = isAi ? 'var(--accent)' : 'var(--accent-2)';
 const hasSite = !!project.sources.site;
 ---
@@ -44,8 +43,8 @@ const hasSite = !!project.sources.site;
     </span>
   </footer>
   <nav class="links">
-    {hasSite && <a href={project.sources.site} target="_blank" rel="noopener">Live →</a>}
-    <a href={project.sources.repo} target="_blank" rel="noopener">Repo →</a>
+    {hasSite && <a href={project.sources.site} target="_blank" rel="noopener">Live -></a>}
+    <a href={project.sources.repo} target="_blank" rel="noopener">Repo -></a>
   </nav>
 </article>
 
@@ -53,22 +52,24 @@ const hasSite = !!project.sources.site;
   .card {
     --card-accent: var(--accent);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.25rem 1.5rem;
+    border-radius: var(--radius);
+    padding: 1.5rem;
     background: var(--card-bg);
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    transition: border-color 0.15s, transform 0.15s;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    backdrop-filter: blur(8px);
   }
   .card:hover {
     border-color: var(--card-accent);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
   }
   .card[data-variant='featured'] {
     border-color: var(--card-accent);
     background:
-      linear-gradient(180deg, color-mix(in srgb, var(--card-accent) 12%, var(--card-bg)) 0%, var(--card-bg) 100%);
+      linear-gradient(180deg, var(--card-bg-2) 0%, var(--card-bg) 100%);
   }
   header {
     display: flex;
@@ -78,7 +79,8 @@ const hasSite = !!project.sources.site;
   }
   h3 {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
   }
   h3 a {
     color: var(--fg);
