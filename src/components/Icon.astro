@@ -1,0 +1,29 @@
+---
+import { iconPaths, type IconName } from '~/data/icons';
+
+export type { IconName };
+
+export interface Props {
+  name: IconName;
+  size?: number;
+  class?: string;
+}
+
+const { name, size = 16, class: className = '' } = Astro.props;
+const selected = iconPaths[name];
+---
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
+  fill="currentColor"
+  viewBox="0 0 16 16"
+  class={className}
+  aria-hidden="true"
+>
+  {Array.isArray(selected) ? (
+    selected.map((d) => <path d={d} />)
+  ) : (
+    <path d={selected} />
+  )}
+</svg>

@@ -1,7 +1,9 @@
 ---
 import ProjectCard from './ProjectCard.astro';
 import Reveal from './Reveal.astro';
+import Icon from './Icon.astro';
 import type { CollectionEntry } from 'astro:content';
+import type { IconName } from './Icon.astro';
 
 export interface Props {
   track: 'ai-dev' | 'shader-physics';
@@ -9,9 +11,10 @@ export interface Props {
   lede: string;
   featuredSlugs: string[];
   allInTrack: CollectionEntry<'projects'>['data'][];
+  icon?: IconName;
 }
 
-const { track, heading, lede, featuredSlugs, allInTrack } = Astro.props;
+const { track, heading, lede, featuredSlugs, allInTrack, icon } = Astro.props;
 
 const featured = featuredSlugs
   .map((slug) => allInTrack.find((p) => p.slug === slug))
@@ -26,7 +29,10 @@ const tail = allInTrack
 <section class="track" data-track={track}>
   <Reveal>
     <header class="track-header">
-      <p class="eyebrow">Track</p>
+      <p class="eyebrow">
+        {icon && <span class="eyebrow-icon"><Icon name={icon} size={14} /></span>}
+        Track
+      </p>
       <h2>{heading}</h2>
       <p class="lede">{lede}</p>
     </header>
@@ -74,6 +80,12 @@ const tail = allInTrack
     margin: 0;
     max-width: 60ch;
     font-size: 1.05rem;
+  }
+  .eyebrow-icon {
+    display: inline-flex;
+    vertical-align: middle;
+    margin-right: 0.35rem;
+    color: var(--accent-2);
   }
   .headliner {
     display: grid;

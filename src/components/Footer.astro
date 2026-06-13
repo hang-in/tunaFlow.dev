@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import Icon from './Icon.astro';
 
 export interface Props {
   site?: CollectionEntry<'site'>['data'];
@@ -7,9 +8,9 @@ export interface Props {
 const { site } = Astro.props;
 const year = new Date().getFullYear();
 ---
-<footer class="site-footer">
+<footer class="site-footer reveal">
   <div class="inner">
-    <div>
+    <div class="brand-line">
       <strong>tunaFlow</strong> - a family of focused, open-source dev tools by
       {site?.links?.github
         ? <a href={site.links.github} target="_blank" rel="noopener">hang-in</a>
@@ -18,9 +19,12 @@ const year = new Date().getFullYear();
     </div>
     <div class="links">
       {site?.links?.github && (
-        <a href={site.links.github} target="_blank" rel="noopener">GitHub</a>
+        <a href={site.links.github} target="_blank" rel="noopener">
+          <Icon name="github" size={16} />
+          GitHub
+        </a>
       )}
-      <span class="muted">© {year}</span>
+      <span class="muted"><Icon name="sparkles" size={12} /> © {year}</span>
     </div>
   </div>
 </footer>
@@ -42,6 +46,23 @@ const year = new Date().getFullYear();
     color: var(--muted);
     font-size: 0.9rem;
   }
-  .links { display: flex; gap: 1rem; align-items: center; }
-  .muted { color: var(--muted); }
+  .brand-line { display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap; }
+  .links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--muted);
+  }
+  .links a:hover { color: var(--fg); text-decoration: none; }
+  .muted {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--muted);
+  }
 </style>

@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 const path = Astro.url.pathname;
 const isActive = (p: string) => path === p || (p !== '/' && path.startsWith(p));
 ---
@@ -10,7 +11,10 @@ const isActive = (p: string) => path === p || (p !== '/' && path.startsWith(p));
   <nav>
     <a href="/" class:list={[{ active: isActive('/') }]}>Home</a>
     <a href="/projects" class:list={[{ active: isActive('/projects') }]}>Projects</a>
-    <a href="https://github.com/hang-in" target="_blank" rel="noopener">GitHub -\u003e</a>
+    <a href="https://github.com/hang-in" target="_blank" rel="noopener" class="github-link">
+      <Icon name="github" size={18} />
+      GitHub
+    </a>
   </nav>
 </header>
 
@@ -50,6 +54,7 @@ const isActive = (p: string) => path === p || (p !== '/' && path.startsWith(p));
     display: flex;
     gap: 1.5rem;
     font-size: 0.95rem;
+    align-items: center;
   }
   nav a {
     color: var(--muted);
@@ -58,4 +63,17 @@ const isActive = (p: string) => path === p || (p !== '/' && path.startsWith(p));
   }
   nav a:hover { color: var(--fg); text-decoration: none; }
   nav a.active { color: var(--fg); }
+  .github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  .github-link:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.04);
+  }
 </style>

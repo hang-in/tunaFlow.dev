@@ -2,6 +2,7 @@
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import TrackHeadline from '~/components/TrackHeadline.astro';
 import Reveal from '~/components/Reveal.astro';
+import Icon from '~/components/Icon.astro';
 import { getCollection, getEntry } from 'astro:content';
 
 const site = await getEntry('site', 'config');
@@ -14,6 +15,11 @@ const tracks = ['ai-dev', 'shader-physics'] as const;
 const byTrack = Object.fromEntries(
   tracks.map((t) => [t, visible.filter((p) => p.track === t).sort((a, b) => a.order - b.order || a.slug.localeCompare(b.slug))]),
 );
+
+const trackIcon: Record<typeof tracks[number], 'sparkles' | 'orbit'> = {
+  'ai-dev': 'sparkles',
+  'shader-physics': 'orbit',
+};
 ---
 <BaseLayout
   title={site.data.title}
@@ -22,7 +28,10 @@ const byTrack = Object.fromEntries(
   <main>
     <section class="hero hero-scale">
       <Reveal delay={0}>
-        <p class="eyebrow">{site.data.eyebrow}</p>
+        <p class="eyebrow">
+          <span class="eyebrow-icon"><Icon name="sparkles" size={14} /></span>
+          {site.data.eyebrow}
+        </p>
       </Reveal>
       <Reveal delay={80}>
         <h1>
@@ -39,12 +48,20 @@ const byTrack = Object.fromEntries(
       </Reveal>
       <Reveal delay={240}>
         <div class="cta">
-          <a class="btn primary" href="/projects">Browse the family</a>
+          <a class="btn primary" href="/projects">
+            Browse the family
+            <Icon name="arrow-right" size={16} />
+          </a>
           <a class="btn" href="https://github.com/hang-in/tunaFlow" target="_blank" rel="noopener">
-            Get tunaFlow ->
+            <Icon name="github" size={16} />
+            Get tunaFlow
           </a>
         </div>
       </Reveal>
+      <div class="scroll-hint reveal">
+        <Icon name="chevron-down" size={20} />
+        <span>Scroll</span>
+      </div>
     </section>
 
     <section class="tracks">
@@ -55,6 +72,7 @@ const byTrack = Object.fromEntries(
           lede={site.data.tracks[t].lede}
           featuredSlugs={site.data.featured[t]}
           allInTrack={byTrack[t]}
+          icon={trackIcon[t]}
         />
       ))}
     </section>
@@ -95,9 +113,36 @@ const byTrack = Object.fromEntries(
   }
   .lede a { color: var(--accent); }
   .cta { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .cta .btn { display: inline-flex; align-items: center; gap: 0.4rem; }
   .tracks {
     display: flex;
     flex-direction: column;
     gap: 6rem;
+  }
+  .eyebrow-icon {
+    display: inline-flex;
+    vertical-align: middle;
+    margin-right: 0.35rem;
+    color: var(--accent-2);
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-hint { animation: none; }
   }
 </style>

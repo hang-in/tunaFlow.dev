@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { getMetadata } from '~/lib/metadata';
+import Icon from './Icon.astro';
 
 export interface Props {
   project: CollectionEntry<'projects'>['data'];
@@ -12,6 +13,13 @@ const live = await getMetadata(project.sources);
 const isAi = project.track === 'ai-dev';
 const accent = isAi ? 'var(--accent)' : 'var(--accent-2)';
 const hasSite = !!project.sources.site;
+const hostIcon = project.sources.host === 'github' ? 'github' : 'external';
+const statusIcon = {
+  beta: 'sparkles',
+  stable: 'star',
+  wip: 'code',
+  archived: 'clock',
+} as const;
 ---
 <article
   class="card"
@@ -27,24 +35,44 @@ const hasSite = !!project.sources.site;
         <a href={project.sources.repo} target="_blank" rel="noopener">{project.name}</a>
       )}
     </h3>
-    <span class={`status status-${project.status}`}>{project.status}</span>
+    <span class={`status status-${project.status}`}>
+      <Icon name={statusIcon[project.status]} size={12} />
+      {project.status}
+    </span>
   </header>
   <p class="tagline">{project.tagline}</p>
   <p class="description">{project.description}</p>
   <footer>
-    <span class="lang">{project.language}</span>
+    <span class="lang">
+      <Icon name="code" size={12} />
+      {project.language}
+    </span>
     <span class="meta">
-      {live.stars !== null && <span title="stars">★ {live.stars}</span>}
+      {live.stars !== null && (
+        <span class="badge" title="stars">
+          <Icon name="star" size={12} />
+          {live.stars}
+        </span>
+      )}
       {live.pushedAt && (
-        <span title={`last push: ${live.pushedAt}`}>
-          · {new Date(live.pushedAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+        <span class="badge" title={`last push: ${live.pushedAt}`}>
+          <Icon name="clock" size={12} />
+          {new Date(live.pushedAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
         </span>
       )}
     </span>
   </footer>
   <nav class="links">
-    {hasSite && <a href={project.sources.site} target="_blank" rel="noopener">Live -></a>}
-    <a href={project.sources.repo} target="_blank" rel="noopener">Repo -></a>
+    {hasSite && (
+      <a href={project.sources.site} target="_blank" rel="noopener">
+        <Icon name="external" size={12} />
+        Live
+      </a>
+    )}
+    <a href={project.sources.repo} target="_blank" rel="noopener">
+      <Icon name={hostIcon} size={12} />
+      Repo
+    </a>
   </nav>
 </article>
 
@@ -91,6 +119,9 @@ const hasSite = !!project.sources.site;
     text-decoration: none;
   }
   .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -123,7 +154,26 @@ const hasSite = !!project.sources.site;
     font-size: 0.8rem;
     color: #777;
   }
-  .meta { display: flex; gap: 0.4rem; }
+  .lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .meta {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    color: #aaa;
+  }
   .links {
     display: flex;
     gap: 0.75rem;
@@ -131,6 +181,9 @@ const hasSite = !!project.sources.site;
     margin-top: 0.25rem;
   }
   .links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
     color: var(--card-accent);
   }
 </style>
