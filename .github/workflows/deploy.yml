@@ -8,6 +8,11 @@ on:
     # Refresh live metadata every 6 hours, then redeploy.
     - cron: '0 */6 * * *'
 
+env:
+  # Opt in to Node 24 for actions that internally ship a Node runtime.
+  # This suppresses the GitHub Actions Node 20 deprecation warning.
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 concurrency:
   group: pages-deploy
   cancel-in-progress: true
