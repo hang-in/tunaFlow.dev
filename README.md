@@ -6,18 +6,18 @@ The landing site for the [tunaFlow family](https://github.com/hang-in) of focuse
 
 ## What this is
 
-A single static site that serves as the public home for everything we ship under the `tuna*` and `*bit` banners — headlined by [tunaFlow](https://github.com/hang-in/tunaFlow), the desktop multi-engine AI coding client.
+A single static site that serves as the public home for everything we ship under the `tuna*` and `*bit` banners - headlined by [tunaFlow](https://github.com/hang-in/tunaFlow), the desktop multi-engine AI coding client.
 
 Two tracks share the site:
 
-- **AI dev** — orchestrating, routing, and visualising coding agents.
-- **Real-time graphics & physics** — WebGPU solar systems, gravity, black holes.
+- **AI dev** - orchestrating, routing, and visualising coding agents.
+- **Real-time graphics & physics** - WebGPU solar systems, gravity, black holes.
 
 `tunaFlow` is both a product name and a family name. The site, the brand, and the philosophy are all the same thing.
 
 ## Stack
 
-- [Astro 6](https://astro.build) — static-first, React islands as needed
+- [Astro 6](https://astro.build) - static-first, React islands as needed
 - TypeScript (strict)
 - [Astro Content Collections](https://docs.astro.build/en/guides/content-collections/) for project data
 - Vanilla CSS with custom properties (no Tailwind, by choice)
@@ -58,7 +58,7 @@ npm run fetch:metadata     # populate src/content/.cache/metadata.json
 4. Set `sources.host` to `github` or `gitea` and fill `owner` / `name`.
 5. If you want it surfaced as a track headline, add its slug to
    `src/content/site/config.json → featured.<track>`.
-6. Run `npm run dev` — the card appears automatically.
+6. Run `npm run dev` - the card appears automatically.
 
 ## Deployment
 

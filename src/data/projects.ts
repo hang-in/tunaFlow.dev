@@ -86,7 +86,7 @@ export const projects: Project[] = [
   {
     slug: 'tunachat',
     name: 'tunaChat',
-    tagline: 'Burn your tokens — visually.',
+    tagline: 'Burn your tokens - visually.',
     description:
       'A live visualisation of token spend across sessions. Built to make usage legible.',
     repo: 'https://github.com/hang-in/tunaChat',

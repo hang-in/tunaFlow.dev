@@ -1,7 +1,7 @@
 {
   "slug": "solgrbit",
   "name": "solgrbit",
-  "tagline": "WebGPU gravity solar system — interactive, real-time, in your browser.",
+  "tagline": "WebGPU gravity solar system - interactive, real-time, in your browser.",
   "description": "A Three.js + WebGPU solar system with full n-body gravity. Server-synced clocks, cinematic camera modes, and a sandbox where you can poke orbits with your mouse.",
   "track": "shader-physics",
   "status": "stable",

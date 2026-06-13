@@ -1,7 +1,7 @@
 {
   "slug": "tunachat",
   "name": "tunaChat",
-  "tagline": "Burn your tokens — visually.",
+  "tagline": "Burn your tokens - visually.",
   "description": "A live visualisation of token spend across sessions. Built to make usage legible.",
   "track": "ai-dev",
   "status": "archived",

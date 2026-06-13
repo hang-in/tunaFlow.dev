@@ -7,7 +7,7 @@
  * the static JSON loaded by content collections. Output is cached in
  * `src/content/.cache/metadata.json` so subsequent builds (including local
  * `astro dev` restarts) are offline-friendly and the deploy step is
- * hermetic — it never reaches the public internet for metadata.
+ * hermetic - it never reaches the public internet for metadata.
  *
  * Failure mode
  * ------------

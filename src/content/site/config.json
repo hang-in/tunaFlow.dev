@@ -5,7 +5,7 @@
   "tracks": {
     "ai-dev": {
       "heading": "AI dev",
-      "lede": "Tools for working with coding agents — orchestrating, routing, visualising, and grounding them."
+      "lede": "Tools for working with coding agents - orchestrating, routing, visualising, and grounding them."
     },
     "shader-physics": {
       "heading": "Real-time graphics & physics",

@@ -38,7 +38,7 @@ for (const entry of projects) {
   );
 }
 
-console.log(`[fetch] done — live:${ok} cache:${cached} fallback:${fallback}`);
+console.log(`[fetch] done - live:${ok} cache:${cached} fallback:${fallback}`);
 if (ok === 0 && cached === 0) {
   console.warn('[fetch] WARNING: no live or cached metadata resolved');
 }
